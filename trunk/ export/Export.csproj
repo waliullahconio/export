@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Content\ContentFactory.cs" />
     <Compile Include="Content\ContentIsDataGridView.cs" />
+    <Compile Include="Content\ContentIsDataTable.cs" />
+    <Compile Include="Content\ContentIsListView.cs" />
     <Compile Include="Content\IContent.cs" />
     <Compile Include="ExportFactory.cs" />
     <Compile Include="ExportPdf.cs" />
