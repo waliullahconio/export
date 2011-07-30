@@ -14,6 +14,10 @@ namespace Export.Content
             {
                 case "DataGridView":
                     return new ContentIsDataGridView(content);
+                case "ListView":
+                    return new ContentIsListView(content);
+                case "DataTable":
+                    return new ContentIsDataTable(content);
                 default:
                     throw new ArgumentException("暂不支持该内容输出");
             }
