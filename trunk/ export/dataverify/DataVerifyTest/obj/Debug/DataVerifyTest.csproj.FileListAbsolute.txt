@@ -1,0 +1,7 @@
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\bin\Debug\DataVerifyTest.dll
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\bin\Debug\DataVerifyTest.pdb
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\bin\Debug\DataVerify.dll
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\bin\Debug\DataVerify.pdb
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\obj\Debug\ResolveAssemblyReference.cache
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\obj\Debug\DataVerifyTest.dll
+F:\MyProgram\SVN\DataVerify\DataVerifyTest\obj\Debug\DataVerifyTest.pdb

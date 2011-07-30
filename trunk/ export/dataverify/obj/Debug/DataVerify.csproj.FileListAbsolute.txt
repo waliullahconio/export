@@ -1,0 +1,5 @@
+F:\MyProgram\SVN\DataVerify\bin\Debug\DataVerify.dll
+F:\MyProgram\SVN\DataVerify\bin\Debug\DataVerify.pdb
+F:\MyProgram\SVN\DataVerify\obj\Debug\ResolveAssemblyReference.cache
+F:\MyProgram\SVN\DataVerify\obj\Debug\DataVerify.dll
+F:\MyProgram\SVN\DataVerify\obj\Debug\DataVerify.pdb
