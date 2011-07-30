@@ -8,7 +8,7 @@ namespace Export
     /// <summary>
     /// 导出配置类
     /// </summary>
-    public class Config
+    public class MyDocument
     {
         /// <summary>
         /// 标题文字
@@ -63,5 +63,26 @@ namespace Export
             get;
             set;
         }
+
+        /// <summary>
+        /// 要导出的内容
+        /// </summary>
+        public object Content
+        {
+            get;
+            set;
+        }
+
+        public void Export(ExportType type, string path)
+        {
+            IExport export = ExportFactory.CreateInstance(type, this);
+            export.Export(path);
+        }
+    }
+
+    public enum ExportType
+    { 
+        Xls,
+        Pdf,
     }
 }

@@ -47,7 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Content\ContentFactory.cs" />
+    <Compile Include="Content\ContentIsDataGridView.cs" />
+    <Compile Include="Content\IContent.cs" />
+    <Compile Include="ExportFactory.cs" />
+    <Compile Include="ExportPdf.cs" />
+    <Compile Include="MyDocument.cs" />
     <Compile Include="ExportExcel.cs" />
     <Compile Include="IExport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
