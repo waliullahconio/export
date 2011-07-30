@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestLists xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestList name="测试列表" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6" />
+  <TestList name="DataVerifyTest" id="dc36b334-5a28-49ef-8c30-bf6f60b67716" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>测试项目</Description>
+  </TestList>
+</TestLists>

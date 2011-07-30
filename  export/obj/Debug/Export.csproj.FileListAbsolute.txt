@@ -1,0 +1,6 @@
+F:\MyProgram\SVN\Export\bin\Debug\Export.dll
+F:\MyProgram\SVN\Export\bin\Debug\Export.pdb
+F:\MyProgram\SVN\Export\obj\Debug\ResolveAssemblyReference.cache
+F:\MyProgram\SVN\Export\obj\Debug\Export.dll
+F:\MyProgram\SVN\Export\obj\Debug\Export.pdb
+F:\MyProgram\SVN\Export\bin\Debug\MyXls.SL2.dll
