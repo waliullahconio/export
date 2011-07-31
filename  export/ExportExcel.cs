@@ -5,6 +5,7 @@ using System.Text;
 using org.in2bits.MyXls;
 using System.Windows.Forms;
 using Export.Content;
+using System.IO;
 
 namespace Export
 {
@@ -74,7 +75,7 @@ namespace Export
         {
             MyDoc = doc;
             XlsDoc = new XlsDocument();
-            CurSheet = XlsDoc.Workbook.Worksheets.AddNamed(MyDoc.DocName);
+            CurSheet = XlsDoc.Workbook.Worksheets.Add(MyDoc.DocName);
         }
 
         /// <summary>
@@ -88,7 +89,8 @@ namespace Export
             xf.Font.Height = (ushort)(20 * MyDoc.HeaderSize);//因为字体大小是以1/20point为单位，所以乘以20
             xf.HorizontalAlignment = HorizontalAlignments.Centered;
             Cells.Add(Cursor + 1, 1, MyDoc.HeaderText, xf);//Cursor所以起始为0，而Excel其实索引为1，故+1
-            CurSheet.AddMergeArea(new MergeArea(Cursor + 1, Cursor + 1, 1, Content.ColumnsCount + 1));//理由同上
+            CurSheet.AddMergeArea(new MergeArea(Cursor + 1, Cursor + 1, 1, Content.ColumnsCount));//理由同上
+            Cursor++;
         }
 
         /// <summary>
@@ -120,12 +122,14 @@ namespace Export
             xf.Font.Height = (ushort)(20 * MyDoc.FooterSize);
             xf.HorizontalAlignment = HorizontalAlignments.Centered;
             Cells.Add(Cursor + 1, 1, MyDoc.FooterText, xf);
-            CurSheet.AddMergeArea(new MergeArea(Cursor + 1, Cursor + 1, 1, Content.ColumnsCount + 1));
+            CurSheet.AddMergeArea(new MergeArea(Cursor + 1, Cursor + 1, 1, Content.ColumnsCount));
             Cursor++;
-
-            
         }
 
+        /// <summary>
+        /// 导出Excel
+        /// </summary>
+        /// <param name="path"></param>
         public void Export(string path)
         {
             PrintHeader();
@@ -136,7 +140,8 @@ namespace Export
             colInfo.ColumnIndexEnd = (ushort)(Content.ColumnsCount - 1);
             colInfo.Width = 256 * 15;
             CurSheet.AddColumnInfo(colInfo);
-            XlsDoc.Save(path, true);
+            XlsDoc.FileName = Path.GetFileName(path);
+            XlsDoc.Save(Path.GetDirectoryName(path), true);
         }
     }
 }
