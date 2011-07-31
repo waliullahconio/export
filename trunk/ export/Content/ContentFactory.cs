@@ -6,8 +6,16 @@ using System.Windows.Forms;
 
 namespace Export.Content
 {
+    /// <summary>
+    /// 导出主内容的工厂类
+    /// </summary>
     public class ContentFactory
     {
+        /// <summary>
+        /// 构造主内容实例
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public static IContent CreateInstance(object content)
         {
             switch (content.GetType().Name)
