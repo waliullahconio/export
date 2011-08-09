@@ -5,3 +5,4 @@ F:\MyProgram\SVN\Export\obj\Debug\Export.dll
 F:\MyProgram\SVN\Export\obj\Debug\Export.pdb
 F:\MyProgram\SVN\Export\bin\Debug\MyXls.SL2.dll
 F:\MyProgram\SVN\Export\bin\Debug\itextsharp.dll
+F:\MyProgram\SVN\Export\bin\Debug\ICSharpCode.SharpZipLib.dll
