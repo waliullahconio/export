@@ -53,7 +53,7 @@ namespace Export.Content
             {
                 //由于DataGridView包含一行列头文本
                 //所以在行数上+1
-                return Dgv.Rows.Count + 1;
+                return Dgv.Rows.Count;
             }
         }
 
