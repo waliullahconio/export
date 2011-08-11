@@ -103,7 +103,7 @@ namespace Export
         public void Export()
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Excel文件|*.xls|Pdf文件|*.pdf";
+            save.Filter = "Excel文件|*.xls|Pdf文件|*.pdf|文本文件|*.txt";
             save.FileName = this.FileName;
             save.AddExtension = true;
             if (save.ShowDialog() == DialogResult.OK)
@@ -117,5 +117,6 @@ namespace Export
     { 
         Xls,
         Pdf,
+        Txt,
     }
 }

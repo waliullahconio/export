@@ -75,7 +75,9 @@ namespace Export
         {
             MyDoc = doc;
             XlsDoc = new XlsDocument();
-            CurSheet = XlsDoc.Workbook.Worksheets.Add(MyDoc.DocName);
+            string sheetName = string.Format("{0}", MyDoc.DocName);
+            sheetName = string.IsNullOrEmpty(sheetName) ? "sheet1" : sheetName;
+            CurSheet = XlsDoc.Workbook.Worksheets.Add(sheetName);
         }
 
         /// <summary>

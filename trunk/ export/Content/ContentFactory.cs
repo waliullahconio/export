@@ -20,6 +20,7 @@ namespace Export.Content
         {
             switch (content.GetType().Name)
             {
+                case "DoubleBufferDataGridView":
                 case "DataGridView":
                     return new ContentIsDataGridView(content);
                 case "ListView":
