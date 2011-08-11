@@ -58,6 +58,7 @@
     <Compile Include="Content\IContent.cs" />
     <Compile Include="ExportFactory.cs" />
     <Compile Include="ExportPdf.cs" />
+    <Compile Include="ExportText.cs" />
     <Compile Include="MyDocument.cs" />
     <Compile Include="ExportExcel.cs" />
     <Compile Include="IExport.cs" />
@@ -82,4 +83,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy Export.dll F:\GPMS\Dlls</PostBuildEvent>
+  </PropertyGroup>
 </Project>

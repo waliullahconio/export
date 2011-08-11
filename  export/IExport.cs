@@ -8,11 +8,19 @@ namespace Export
 {
     public interface IExport
     {
+        /// <summary>
+        /// 需要导出文档
+        /// </summary>
         MyDocument MyDoc
         {
             get;
             set;
         }
+
+        /// <summary>
+        /// 导出
+        /// </summary>
+        /// <param name="path"></param>
         void Export(string path);
     }
 }

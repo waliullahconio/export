@@ -16,6 +16,8 @@ namespace Export
                     return new ExportExcel(doc);
                 case ExportType.Pdf:
                     return new ExportPdf(doc);
+                case ExportType.Txt:
+                    return new ExportText(doc);
                 default:
                     throw new ArgumentException("该类型方法未实现");
             }
@@ -31,6 +33,9 @@ namespace Export
                     return new ExportExcel(doc);
                 case "pdf":
                     return new ExportPdf(doc);
+                case "cvs":
+                case "txt":
+                    return new ExportText(doc);
                 default:
                     throw new ArgumentException("该类型方法未实现");
             }
