@@ -44,25 +44,23 @@ namespace Export
             set;
         }
 
-        private IContent _Content;
         /// <summary>
         /// 主输出内容
         /// </summary>
         private IContent Content
         {
-            get
-            {
-                if (_Content == null)
-                {
-                    _Content = ContentFactory.CreateInstance(MyDoc.Content);
-                }
-                return _Content;
-            }
+            get;
+            set;
         }
 
         public ExportPdf(MyDocument doc)
+            : this(doc, null)
+        { }
+
+        public ExportPdf(MyDocument doc,string[] columnsName)
         {
             MyDoc = doc;
+            Content = ContentFactory.CreateInstance(doc.Content, columnsName);
         }
 
         private void Init(string path)

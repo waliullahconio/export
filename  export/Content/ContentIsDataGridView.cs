@@ -13,6 +13,15 @@ namespace Export.Content
     public class ContentIsDataGridView : IContent
     {
         /// <summary>
+        /// 需要导出列的列名
+        /// </summary>
+        public string[] NeedColumnsName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 显示的列
         /// </summary>
         public Dictionary<int,int> VisibleColumnsMap
@@ -32,12 +41,19 @@ namespace Export.Content
             }
         }
 
+        public ContentIsDataGridView(object dgv)
+            : this(dgv,null)
+        {
+
+        }
+
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="dgv"></param>
-        public ContentIsDataGridView(object dgv)
+        public ContentIsDataGridView(object dgv,string[] needColumns)
         {
+            NeedColumnsName = needColumns;
             ContentObj = dgv;
             VisibleColumnsMap = new Dictionary<int, int>();
             int f = 0;
@@ -60,6 +76,8 @@ namespace Export.Content
         {
             get
             {
+                if (NeedColumnsName != null && NeedColumnsName.Length > 0)
+                    return NeedColumnsName.Length;
                 if (_ColumnsCount == 0)
                 {
                     int count = 0;
@@ -122,11 +140,22 @@ namespace Export.Content
         {
             /* 由于行数包含了列头
              * 所以rowIndex为0时指向列头文本*/
-            if (rowIndex == 0)
+            if (NeedColumnsName != null && NeedColumnsName.Length != 0)
             {
-                return Dgv.Columns[VisibleColumnsMap[columnIndex]].HeaderText;
+                if (rowIndex == 0)
+                {
+                    return Dgv.Columns[NeedColumnsName[columnIndex]].HeaderText;
+                }
+                return Dgv.Rows[rowIndex - 1].Cells[NeedColumnsName[columnIndex]].FormattedValue;
             }
-            return Dgv.Rows[rowIndex - 1].Cells[VisibleColumnsMap[columnIndex]].FormattedValue;
+            else
+            {
+                if (rowIndex == 0)
+                {
+                    return Dgv.Columns[VisibleColumnsMap[columnIndex]].HeaderText;
+                }
+                return Dgv.Rows[rowIndex - 1].Cells[VisibleColumnsMap[columnIndex]].FormattedValue;
+            }
         }
 
         #endregion

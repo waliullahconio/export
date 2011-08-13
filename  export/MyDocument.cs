@@ -87,14 +87,36 @@ namespace Export
         }
 
         /// <summary>
+        /// 根据列数组导出
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="exportColumns"></param>
+        public void Export(string path, string[] exportColumns)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "Excel文件|*.xls|Pdf文件|*.pdf|文本文件|*.txt";
+                save.FileName = this.FileName;
+                save.AddExtension = true;
+                if (save.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                path = save.FileName;
+            }
+            IExport export = ExportFactory.CreateInstance(path, this, exportColumns);
+            export.Export(path);
+        }
+
+        /// <summary>
         /// 导出
         /// </summary>
         /// <param name="type"></param>
         /// <param name="path"></param>
         public void Export(string path)
         {
-            IExport export = ExportFactory.CreateInstance(path, this);
-            export.Export(path);
+            Export(path, null);
         }
 
         /// <summary>
@@ -102,14 +124,7 @@ namespace Export
         /// </summary>
         public void Export()
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Excel文件|*.xls|Pdf文件|*.pdf|文本文件|*.txt";
-            save.FileName = this.FileName;
-            save.AddExtension = true;
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                Export(save.FileName);
-            }
+            Export(null, null);
         }
     }
 
