@@ -40,5 +40,23 @@ namespace Export
                     throw new ArgumentException("该类型方法未实现");
             }
         }
+
+        public static IExport CreateInstance(string path, MyDocument doc,string[] columnsName)
+        {
+            string extName = Path.GetExtension(path);
+            extName = extName.TrimStart(new char[] { '.' }).ToLower();
+            switch (extName)
+            {
+                case "xls":
+                    return new ExportExcel(doc, columnsName);
+                case "pdf":
+                    return new ExportPdf(doc, columnsName);
+                case "cvs":
+                case "txt":
+                    return new ExportText(doc, columnsName);
+                default:
+                    throw new ArgumentException("该类型方法未实现");
+            }
+        }
     }
 }

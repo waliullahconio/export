@@ -12,6 +12,15 @@ namespace Export.Content
     public interface IContent
     {
         /// <summary>
+        /// 需要导出列的列名
+        /// </summary>
+        string[] NeedColumnsName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 内容所包含的列数
         /// </summary>
         int ColumnsCount

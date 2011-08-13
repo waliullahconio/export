@@ -8,6 +8,15 @@ namespace Export.Content
 {
     class ContentIsListView : IContent
     {
+        /// <summary>
+        /// 需要导出列的列名
+        /// </summary>
+        public string[] NeedColumnsName
+        {
+            get;
+            set;
+        }
+
         public ListView Lv
         {
             get
@@ -17,8 +26,15 @@ namespace Export.Content
         }
 
         public ContentIsListView(object lv)
+            : this(lv, null)
+        {
+
+        }
+
+        public ContentIsListView(object lv,string[] columnsName)
         {
             ContentObj = lv;
+            NeedColumnsName = columnsName;
         }
 
         #region IContent 成员
@@ -26,6 +42,8 @@ namespace Export.Content
         public int ColumnsCount
         {
             get {
+                if (NeedColumnsName != null && NeedColumnsName.Length != 0)
+                    return NeedColumnsName.Length;
                 return Lv.Columns.Count;
             }
         }
@@ -61,11 +79,22 @@ namespace Export.Content
         {
             /* 由于行数包含了列头
              * 所以rowIndex为0时指向列头文本*/
-            if (rowIndex == 0)
+            if (NeedColumnsName != null && NeedColumnsName.Length != 0)
             {
-                return Lv.Columns[columnIndex].Text;
+                if (rowIndex == 0)
+                {
+                    return Lv.Columns[NeedColumnsName[columnIndex]].Text;
+                }
+                return Lv.Items[rowIndex - 1].SubItems[NeedColumnsName[columnIndex]].Text;
             }
-            return Lv.Items[rowIndex - 1].SubItems[columnIndex].Text;
+            else
+            {
+                if (rowIndex == 0)
+                {
+                    return Lv.Columns[columnIndex].Text;
+                }
+                return Lv.Items[rowIndex - 1].SubItems[columnIndex].Text;
+            }
         }
 
         #endregion

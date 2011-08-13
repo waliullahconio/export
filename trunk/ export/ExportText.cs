@@ -37,28 +37,26 @@ namespace Export
             set;
         }
 
-        private IContent _Content;
         /// <summary>
         /// 主输出内容
         /// </summary>
         private IContent Content
         {
-            get
-            {
-                if (_Content == null)
-                {
-                    _Content = ContentFactory.CreateInstance(MyDoc.Content);
-                }
-                return _Content;
-            }
+            get;
+            set;
         }
+
+        public ExportText(MyDocument doc)
+            : this(doc, null)
+        { }
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ExportText(MyDocument doc)
+        public ExportText(MyDocument doc, string[] columnsName)
         {
             MyDoc = doc;
+            Content = ContentFactory.CreateInstance(doc.Content, columnsName);
         }
 
         /// <summary>

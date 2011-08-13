@@ -8,6 +8,15 @@ namespace Export.Content
 {
     public class ContentIsDataTable : IContent
     {
+        /// <summary>
+        /// 需要导出列的列名
+        /// </summary>
+        public string[] NeedColumnsName
+        {
+            get;
+            set;
+        }
+
         public DataTable Dt
         {
             get
@@ -17,15 +26,26 @@ namespace Export.Content
         }
 
         public ContentIsDataTable(object dt)
+            : this(dt, null)
+        { 
+            
+        }
+
+        public ContentIsDataTable(object dt,string[] columnsName)
         {
             ContentObj = dt;
+            NeedColumnsName = columnsName;
         }
 
         #region IContent 成员
 
         public int ColumnsCount
         {
-            get { return Dt.Columns.Count; }
+            get {
+                if (NeedColumnsName != null && NeedColumnsName.Length != 0)
+                    return NeedColumnsName.Length;
+                return Dt.Columns.Count; 
+            }
         }
 
         public int RowsCount
@@ -55,11 +75,22 @@ namespace Export.Content
 
         public object GetValue(int rowIndex, int columnIndex)
         {
-            if (rowIndex == 0)
+            if (NeedColumnsName != null && NeedColumnsName.Length != 0)
             {
-                return Dt.Columns[columnIndex].ColumnName;
+                if (rowIndex == 0)
+                {
+                    return Dt.Columns[NeedColumnsName[columnIndex]].ColumnName;
+                }
+                return Dt.Rows[rowIndex - 1][NeedColumnsName[columnIndex]];
             }
-            return Dt.Rows[rowIndex - 1][columnIndex];
+            else
+            {
+                if (rowIndex == 0)
+                {
+                    return Dt.Columns[columnIndex].ColumnName;
+                }
+                return Dt.Rows[rowIndex - 1][columnIndex];
+            }
         }
 
         #endregion

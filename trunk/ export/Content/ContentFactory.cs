@@ -31,5 +31,26 @@ namespace Export.Content
                     throw new ArgumentException("暂不支持该内容输出");
             }
         }
+
+        /// <summary>
+        /// 构造主内容实例
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static IContent CreateInstance(object content, string[] needColumns)
+        {
+            switch (content.GetType().Name)
+            {
+                case "DoubleBufferDataGridView":
+                case "DataGridView":
+                    return new ContentIsDataGridView(content, needColumns);
+                case "ListView":
+                    return new ContentIsListView(content, needColumns);
+                case "DataTable":
+                    return new ContentIsDataTable(content, needColumns);
+                default:
+                    throw new ArgumentException("暂不支持该内容输出");
+            }
+        }
     }
 }

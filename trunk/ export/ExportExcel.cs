@@ -11,6 +11,15 @@ namespace Export
 {
     public class ExportExcel : IExport
     {
+        /// <summary>
+        /// 需要导出列的列名
+        /// </summary>
+        public string[] NeedColumnsName
+        {
+            get;
+            set;
+        }
+
         #region 属性或字段
         /// <summary>
         /// 需要导出的文档
@@ -50,20 +59,13 @@ namespace Export
             }
         }
 
-        private IContent _Content;
         /// <summary>
         /// 主输出内容
         /// </summary>
         private IContent Content
         {
-            get
-            {
-                if (_Content == null)
-                {
-                    _Content = ContentFactory.CreateInstance(MyDoc.Content);
-                }
-                return _Content;
-            }
+            get;
+            set;
         }
         #endregion
 
@@ -71,13 +73,27 @@ namespace Export
         /// 构造函数
         /// 初始化_XlsDoc对象
         /// </summary>
-        public ExportExcel(MyDocument doc)
+        public ExportExcel(MyDocument doc,string[] needColumns)
         {
             MyDoc = doc;
             XlsDoc = new XlsDocument();
             string sheetName = string.Format("{0}", MyDoc.DocName);
             sheetName = string.IsNullOrEmpty(sheetName) ? "sheet1" : sheetName;
             CurSheet = XlsDoc.Workbook.Worksheets.Add(sheetName);
+            if (needColumns == null || needColumns.Length == 0)
+            {
+                Content = ContentFactory.CreateInstance(MyDoc.Content);
+            }
+            else
+            {
+                Content = ContentFactory.CreateInstance(MyDoc.Content, needColumns);
+            }
+        }
+
+        public ExportExcel(MyDocument doc)
+            : this(doc, null)
+        {
+
         }
 
         /// <summary>
